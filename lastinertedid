@@ -1,0 +1,17 @@
+	if(isset($_POST['submit']))
+	{
+		$id=0;
+		extract($_POST);
+		var_dump($_POST);
+		$pdo=getPDOObject();
+		$posted_data=$_POST;
+		$sql=$pdo->query("SELECT * FROM `cart` where  id LIKE '$id'");
+		$num=$sql->rowCount();
+		if(!$num)
+		{	
+					$affected_rows=insert('cart',$posted_data);	
+					if($affected_rows)
+						$umessage='<div class="alert alert-success" role="alert">
+								<strong></strong>Added Successfully
+							   </div>';
+		}
